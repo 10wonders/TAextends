@@ -1,0 +1,125 @@
+<p>강의목차</p>
+
+<ul>
+	<li><img src="https://portal.hanyang.ac.kr/haksa/images/spin/spin-button.png" /></li>
+	<li>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;1학기/여름학기&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;2학기/겨울학기&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+</ul>
+
+<h1>학위과정</h1>
+
+<table>
+	<thead>
+		<tr>
+			<th>학기</th>
+			<th>학수번호</th>
+			<th>수업번호</th>
+			<th>개설대학</th>
+			<th>교과목명</th>
+			<th>대표교강사</th>
+			<th>학점</th>
+			<th>수업홈</th>
+			<th>강의평가</th>
+			<th>공학인증<br />
+			강의평가</th>
+			<th>설문</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td rowspan="7">2학기</td>
+			<td>SYH0003</td>
+			<td>15381</td>
+			<td>한양대(학부)</td>
+			<td>기업가정신과비즈니스리더십(HELP3)</td>
+			<td>송영수</td>
+			<td>2</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>CSE4006</td>
+			<td>10060</td>
+			<td>한양대(학부)</td>
+			<td>소프트웨어공학</td>
+			<td>유인경</td>
+			<td>3</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>ELE4029</td>
+			<td>10065</td>
+			<td>한양대(학부)</td>
+			<td>컴파일러</td>
+			<td>임을규</td>
+			<td>3</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>ENE4019</td>
+			<td>13124</td>
+			<td>한양대(학부)</td>
+			<td>컴퓨터네트워크</td>
+			<td>조인휘</td>
+			<td>3</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>GEN5100</td>
+			<td>13116</td>
+			<td>한양대(학부)</td>
+			<td>커리어개발Ⅱ</td>
+			<td>임을규</td>
+			<td>1</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>GEN6006</td>
+			<td>10075</td>
+			<td>한양대(학부)</td>
+			<td>특허법의이해</td>
+			<td>장의선</td>
+			<td>2</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>ITE2038</td>
+			<td>13122</td>
+			<td>한양대(학부)</td>
+			<td>데이터베이스시스템및응용</td>
+			<td>차재혁</td>
+			<td>3</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+
+<ul>
+	<li><img src="https://portal.hanyang.ac.kr/haksa/images/spin/spin-button.png" /></li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+</ul>
+
+<h1>비학위과정</h1>
