@@ -19,11 +19,16 @@ router.get('/1', function(req, res, next) {
   var data_path = path.join(__dirname,'../public/USER/raw_content','content.txt');
   var responsebody;
     fs.readFile(data_path, 'utf-8',function(err,data){
-      if(err) throw err
-        var obj = JSON.parse(data);
-      res.render('board_view.html',{
-        board_data : obj
-      });
+      if(err) {
+          console.log("file err");
+          res.redirect("/")
+      }
+      else {
+          var obj = JSON.parse(data);
+          res.render('board_view.html', {
+              board_data: obj
+          });
+      }
     });
 });
 
