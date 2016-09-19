@@ -27,9 +27,9 @@ router.post('/',function(req, res){
     console.log("posttest");
     var title = req.body.title;
     var content = req.body.editor1;
-    var urlregax = /(http(s)?)(:\/\/)?(www\.)?[a-zA-Z0-9-_\.]+([-a-zA-Z0-9:%_\+.~#?&//=]*)?(.(jpg|png|jpeg|gif|bmp))/g;
+    var urlregax = /(http(s)?)(:\/\/)?(www\.)?[a-zA-Z0-9-_\.]+([-a-zA-Z0-9:%_\+.~#?&//=]*)?(.(jpg|png|jpeg|gif|bmp))([-a-zA-Z0-9:;%_\+.~#?&//=]*)?/g;
     var url = content.match(urlregax);
-
+    console.log(url);
     for(var i = 0;i<url.length;i++)
     {
         download(url[i],i+".png",function(){
