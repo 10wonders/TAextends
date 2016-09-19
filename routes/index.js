@@ -4,24 +4,47 @@ var app = express();
 var router = express.Router();
 var fs = require('fs');
 
-/* GET home page. */
+/* download image from remote url */
+var request = require('request');
+
+var download = function(uri, filename, callback){
+    request.head(uri, function(err, res, body){
+        console.log('content-type',res.headers['content-type']);
+        console.log('content-length',res.headers['content-length']);
+        request(uri).pipe(fs.createWriteStream("public/USER/images/"+filename)).on('close', callback);
+    });
+}
 
 router.get('/', function(req, res) {
     res.set({
         'Content-Type':'text/html',
         'charset':'utf-8'
     });
-    res.sendFile(path.join(__dirname, '../views', 'main.html'));
+    res.render('main.html');
 });
 
-router.post('/',function(request, response){
-    console.log(request.body.title);
-    console.log(request.body.editor1);
-    fs.writeFile(path.join(__dirname,'../public/USER/raw_content','content.txt'),request.body.editor1,function(err){
+router.post('/',function(req, res){
+    console.log("posttest");
+    var title = req.body.title;
+    var content = req.body.editor1;
+    var urlregax = /(http(s)?)(:\/\/)?(www\.)?[a-zA-Z0-9-_\.]+([-a-zA-Z0-9:%_\+.~#?&//=]*)?(.(jpg|png|jpeg|gif|bmp))/g;
+    var url = content.match(urlregax);
+    console.log(url);
+    for(var i = 0;i<url.length;i++)
+    {
+        download(url[i],i+".png",function(){
+        })
+    }
+    var saveobject = {
+        title : title,
+        content : content
+    }
+    fs.writeFile(path.join(__dirname,'../public/USER/raw_content','content.txt'),
+                                    JSON.stringify(saveobject),function(err){
         if(err) throw err;
         console.log('File Write ERr');
     })
-    response.redirect('/');
+    res.redirect('/');
 })
 
 module.exports = router;

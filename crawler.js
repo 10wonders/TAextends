@@ -47,7 +47,6 @@ module.exports.joongonara = function joongonara_crawler(){
         function (error, response, body) {
             if (error) throw error;
 
-
             //중고나라 encoding 문제 설정
             var strcontents = iconv.decode(body, 'KS_C_5601');
             body = iconv.encode(strcontents, 'utf-8');

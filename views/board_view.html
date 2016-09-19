@@ -5,7 +5,7 @@
     <title>Triple A Extends</title>
     <script src="/javascripts/ckeditor/ckeditor.js"></script>
     <link href="/stylesheets/main.css" rel="stylesheet" type="text/css">
-    <link href="/stylesheets/stlyle.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="entire">
@@ -57,9 +57,12 @@
             </div>
             <div class="board_view_area">
                 <div class="board_view_form">
-                    <script>
-                        board_view = request.get(data[board_data]);
-                    </script>
+                    <%
+                        var title = board_data.title;
+                        var content = board_data.content;
+                    %>
+                    <%-title%>
+                    <%-content%>
                 </div>
             </div>
 

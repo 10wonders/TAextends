@@ -4,12 +4,14 @@ var router = express.Router();
 var fs = require('fs');
 
 /* GET users listing. */
-router.get('/',function(req,res,next){
+router.get('/',function(req,res){
   res.set({
     'Content-Type':'text/html',
     'charset':'utf-8'
   });
-  res.sendFile(path.join(__dirname, '../views', 'board_view.html'));
+  res.render('board_view.html',{
+    board_data:{}
+  });
 });
 
 
@@ -18,14 +20,11 @@ router.get('/1', function(req, res, next) {
   var responsebody;
     fs.readFile(data_path, 'utf-8',function(err,data){
       if(err) throw err
-        responsebody = {
-          board_data : data
-        };
-      res.write(JSON.stringify(responsebody));
+        var obj = JSON.parse(data);
+      res.render('board_view.html',{
+        board_data : obj
+      });
     });
-
-
-  res.end();
 });
 
 module.exports = router;
