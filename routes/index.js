@@ -30,21 +30,60 @@ router.post('/',function(req, res){
     var urlregax = /(http(s)?)(:\/\/)?(www\.)?[a-zA-Z0-9-_\.]+([-a-zA-Z0-9:%_\+.~#?&//=]*)?(.(jpg|png|jpeg|gif|bmp))([-a-zA-Z0-9:;%_\+.~#?&//=]*)?/g;
     var url = content.match(urlregax);
     console.log(url);
-    for(var i = 0;i<url.length;i++)
-    {
-        download(url[i],i+".png",function(){
-        })
-        content = content.replace(url[i],'/USER/images/'+i+'.png');
+
+    //k == board index
+    var k = 0;
+
+    //writing board index information
+    //not exist -> make
+    try{
+        k = fs.readFileSync('./public/USER/index.txt')
+    } catch (err){
+        if(err.code === 'ENOENT'){
+            fs.writeFileSync('./public/USER/index.txt',k,'utf8', function(err){
+                if(err) throw err;
+                console.log('board index file creted');
+            })
+        }
     }
+    console.log("datak :"+k);
+    k++;
+
+    //make directories
+    fs.mkdirSync('./public/USER/'+k, 0666);
+    fs.mkdirSync('./public/USER/'+k+'/raw_content',0666);
+    fs.mkdirSync('./public/USER/'+k+'/images',0666);
+
+    //check for url pregmatch
+    //if exist download from remote url
+    if(url == null)
+        console.log("no url");
+    else {
+        for (var i = 0; i < url.length; i++) {
+            download(url[i], i + ".png", function () {
+            })
+            content = content.replace(url[i], '/USER/' + k + '/images/' + i + '.png');
+        }
+    }
+
+    //save content
     var saveobject = {
         title : title,
         content : content
     }
-    fs.writeFile(path.join(__dirname,'../public/USER/raw_content','content.txt'),
-                                    JSON.stringify(saveobject),function(err){
+    fs.writeFileSync('./public/USER/'+k+'/raw_content/content.txt',
+                                    JSON.stringify(saveobject),'utf8',function(err){
         if(err)
             console.log("file err");
     })
+
+    //save board index
+    fs.writeFileSync('./public/USER/index.txt',k,'utf8', function(err){
+        if(err)
+            console.log("writing index file err");
+    })
+
+    //redirect to home
     res.redirect('/');
 })
 

@@ -15,10 +15,9 @@ router.get('/',function(req,res){
 });
 
 
-router.get('/1', function(req, res, next) {
-  var data_path = path.join(__dirname,'../public/USER/raw_content','content.txt');
-  var responsebody;
-    fs.readFile(data_path, 'utf-8',function(err,data){
+router.get('/:k', function(req, res, next) {
+  var k = req.params.k;
+    fs.readFile('./public/USER/'+k+'/raw_content/content.txt', 'utf-8',function(err,data){
       if(err) {
           console.log("file err");
           res.redirect("/")
