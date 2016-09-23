@@ -9,23 +9,24 @@ router.get('/',function(req,res){
     'Content-Type':'text/html',
     'charset':'utf-8'
   });
-  res.render('board_view.html',{
-    board_data:{}
+  res.render('layout.html',{
+    board_data:{},
+      frame : './partial/board_view'
   });
 });
 
 
-router.get('/1', function(req, res, next) {
-  var data_path = path.join(__dirname,'../public/USER/raw_content','content.txt');
-  var responsebody;
-    fs.readFile(data_path, 'utf-8',function(err,data){
+router.get('/:k/', function(req, res, next) {
+  var k = req.params.k;
+    fs.readFile('./public/USER/'+k+'/raw_content/content.txt', 'utf-8',function(err,data){
       if(err) {
           console.log("file err");
           res.redirect("/")
       }
       else {
           var obj = JSON.parse(data);
-          res.render('board_view.html', {
+          res.render('layout.html', {
+              frame : './partial/board_view',
               board_data: obj
           });
       }
