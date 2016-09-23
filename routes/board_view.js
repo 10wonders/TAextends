@@ -9,13 +9,14 @@ router.get('/',function(req,res){
     'Content-Type':'text/html',
     'charset':'utf-8'
   });
-  res.render('board_view.html',{
-    board_data:{}
+  res.render('layout.html',{
+    board_data:{},
+      frame : './partial/board_view'
   });
 });
 
 
-router.get('/:k', function(req, res, next) {
+router.get('/:k/', function(req, res, next) {
   var k = req.params.k;
     fs.readFile('./public/USER/'+k+'/raw_content/content.txt', 'utf-8',function(err,data){
       if(err) {
@@ -24,7 +25,8 @@ router.get('/:k', function(req, res, next) {
       }
       else {
           var obj = JSON.parse(data);
-          res.render('board_view.html', {
+          res.render('layout.html', {
+              frame : './partial/board_view',
               board_data: obj
           });
       }

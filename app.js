@@ -4,10 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+
 
 var routes = require('./routes/index');
 var board_view = require('./routes/board_view');
-var crawl = require('./routes/crawlerview')
+var crawl = require('./routes/crawlerview');
+var accounts = require('./routes/accounts');
+
 var app = express();
 
 // view engine setup
@@ -21,11 +25,26 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  key: 'sid',
+  secret : 'secret',
+  resave : false,
+  saveUninitialized: true
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/board_view', board_view);
 app.use('/crawler',crawl);
+app.use('/accounts',accounts);
+
+app.use(function(req, res, next) {
+  if(req.url.substr(-1) == '/' && req.url.length > 1)
+    res.redirect(301, req.url.slice(0, -1));
+  else
+    next();
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -58,6 +77,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
