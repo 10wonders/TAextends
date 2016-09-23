@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Triple A Extends</title>
+    <link href="/stylesheets/main.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <div class="entire">
+        <div class="top">
+            <div class="triple_a_top_logo">
+                <h1 class="title_h1">
+                    <a href="/TAextends/main.html">
+                        TripleA
+                    </a>
+                </h1>
+            </div>
+            <div class="top_middle_search">
+                <div class="top_search">
+                    <form id="top_search_form" name="top_search_form" method="get" action="/search.php">
+                        <fieldset>
+                            <legend>검색:</legend>
+                            <div class="top_search_content">
+                                <input type="text" class="top_search_insert" name="search" id="TA_search" title="검색어입력">
+                                <button class="search_submit">
+                                    검색
+                                </button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div class="top_left_menu">
+                <div class="user_menu">
+                    <div class="account">
+                        <a href="login.html">
+                            LogIn
+                        </a>
+                        <a href="join.html">
+                            Join
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="one">
+        <div style="clear:both;"></div>
+        <div class="main">
+            <div class="main_content">
+                <div class = "main_title">
+                    <h1>
+                        Main_Title
+                    </h1>
+                </div>
+
+                <div class="board_view_area">
+                    <div class="board_view_form">
+                        <table width="745" calss="board_view_table">
+                            <td align="rigth">
+                                <table width="99%" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody><tr>
+                                        <td height="24" valign="bottom" class="title">
+                                            Board				</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" height="2" bgcolor="#E6E6E6"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <fieldset >
+                                    <legend>board search foem</legend>
+                                    <div class="searchBox" id="searchBoxSource">
+                                        <input type="radio" name="srchKeywordMethod" value="title" id="searchOpt1" checked="checked"><label for="searchOpt1">제목</label>
+                                        <input type="radio" name="srchKeywordMethod" value="content" id="searchOpt2"><label for="searchOpt2">내용</label>
+                                        <input type="radio" name="srchKeywordMethod" value="nick" id="searchOpt3"><label for="searchOpt3">닉네임</label>
+                                        <input type="radio" name="srchKeywordMethod" value="id" id="searchOpt4"><label for="searchOpt4">아이디</label>
+                                        <input type="text" name="srchKeyword" class="inputStyle" value=""> <span class="textBtn searchBtn"> <input type="button" name="srchSubmitButton" value="검색"></span>
+                                    </div>
+                                </fieldset>
+                                <table class="bbsType">
+                                    <caption>board</caption>
+                                    <thead>
+                                    <tr>
+                                        <th width="*">제목</th>
+                                        <th width="18%">작성자</th>
+                                        <th width="12%">등록일</th>
+                                        <th width="10%">조회</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="4" class="indexBorder">
+
+                                            <div class="gray">
+
+                                                <a href="">이전글보기</span></a>
+
+                                                <span class="active" style="border:1px solid #DDDDDD;">1</span>
+                                                <a href="">2</a>
+
+                                                <a href="" class="next"><span class="offscreen">다음글보기</span></a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
+
+                                    <tbody>
+                                    <%
+                                    var title = board_data.title;
+                                    %>
+                                    <tr>
+                                        <td class="title">
+
+                                            <a href="/board_view/1">title   das <%-title%>														 									</a>
+                                        </td>
+                                        <td class="name"><a href="" class="nick">화니환</a></td>
+                                        <td>2016.09.18</td>
+                                        <td class="num">45</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </td>
+                            <td></td>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
