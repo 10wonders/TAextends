@@ -1,0 +1,65 @@
+body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #00B7FF;
+}
+
+
+legend, caption {
+    visibility: hidden;
+    height: 0;
+    width: 100%;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    text-indent: -1000px;
+}
+
+.searchBox {
+    margin: 10px 0 15px 0;
+    text-align: center;
+    position: relative;
+    width: 745px;
+}
+
+fieldset{
+    border: 0 none;
+    width:100%;
+}
+table{
+    border-color: grey;
+}
+
+tbody{
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+thead {
+    vertical-align: middle;
+    background: #fafafa;
+    height: 100px;
+}
+
+.bbsType {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 2px solid #989898;
+    border-bottom: 2px solid #989898;
+}
+
+.bbsType tfoot .indexBorder {
+    border-top: 1px solid #bcbcbc;
+    background: #fafafa;
+    padding: 15px 0;
+    text-align: center;
+    margin-right: 87px;
+}
+
+.board_view_form{
+    padding-left: 50px;
+    padding-right: 50px;
+}

@@ -1,8 +1,7 @@
 @charshet "utf-8";
 
-.top{
+.top .top_middle_search{
 	display:block;
-	height:100px;
 	margin-top:30px;
 }
 .triple_a_top_logo{
@@ -11,11 +10,23 @@
 }
 
 .top_middle_search{
-	display:inline;
-	align:center;
-	width:33%;
+	vertical-align: middle;
+	float:left;
+	width:600px;
+}
+.top_search_content{
+	float:left;
+}
+.search_submit{
+	float:left;
+}
+button{
+	display:block;
 }
 
+form{
+	display:block;
+}
 fieldset{
 	width:40%;
 }
@@ -39,6 +50,7 @@ fieldset{
     margin-left:20px;
 }
 
+
 .main_title{
     margin-left:20px;
 }
@@ -59,3 +71,6 @@ fieldset{
 .content_box{
     margin-bottom:10px;
 }
+
+
+

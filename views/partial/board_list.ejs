@@ -1,0 +1,70 @@
+<link href="/stylesheets/board_list.css" rel="stylesheet" type="text/css">
+<div class="board_view_area">
+    <div class="board_view_form">
+        <table width="100%" calss="board_view_table">
+            <td align="right">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody><tr>
+                        <td height="24" valign="bottom" class="title">
+                            Board				</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="2" width="100%" bgcolor="#E6E6E6"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <fieldset >
+                    <legend>board search form</legend>
+                    <div class="searchBox" id="searchBoxSource">
+                        <input type="radio" name="srchKeywordMethod" value="title" id="searchOpt1" checked="checked"><label for="searchOpt1">제목</label>
+                        <input type="radio" name="srchKeywordMethod" value="content" id="searchOpt2"><label for="searchOpt2">내용</label>
+                        <input type="radio" name="srchKeywordMethod" value="nick" id="searchOpt3"><label for="searchOpt3">닉네임</label>
+                        <input type="radio" name="srchKeywordMethod" value="id" id="searchOpt4"><label for="searchOpt4">아이디</label>
+                        <input type="text" name="srchKeyword" class="inputStyle" value=""> <span class="textBtn searchBtn"> <input type="button" name="srchSubmitButton" value="검색"></span>
+                    </div>
+                </fieldset>
+                <table class = "table table-hover" class="bbsType">
+                    <caption>board</caption>
+                    <thead>
+                    <tr>
+                        <th width="*">제목</th>
+                        <th width="18%">작성자</th>
+                        <th width="12%">등록일</th>
+                        <th width="10%">글 번호</th>
+                    </tr>
+                    </thead>
+
+                    <tfoot>
+                    <tr>
+                        <td colspan="4" class="indexBorder">
+                            <div class="gray">
+                                <a href="">이전글보기</span></a>
+                                <span class="active" style="border:1px solid #DDDDDD;">1</span>
+                                <a href="">2</a>
+                                <a href="" class="next"><span class="offscreen">다음글보기</span></a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    <% for (var i=0; i<board_data.length; i++)
+                    {
+                        var item = board_data[i];
+                        var link = "/board_view/"+item.id;
+                    %>
+                    <tr>
+                        <td class="title"><a href = "<%-link%>"><%=item.title%></a></td>
+                        <td class="name" align="center"><a href="" class="nick"><%=item.author %></a></td>
+                        <td><%=item.wtime%></td>
+                        <td class="num" align="center"><%=item.id%></td>
+                    </tr>
+                    <%
+                    }%>
+                    </tbody>
+
+                </table>
+            </td>
+            <td></td>
+        </table>
+    </div>
+</div>

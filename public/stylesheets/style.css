@@ -6,3 +6,84 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+legend, caption {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  text-indent: -1000px;
+}
+
+.searchBox {
+  margin: 10px 0 15px 0;
+  text-align: center;
+  position: relative;
+  width: 745px;
+}
+
+fieldset{
+  border: 0 none;
+}
+table{
+  border-color: grey;
+}
+
+tbody{
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+
+thead {
+  vertical-align: middle;
+  background: #fafafa;
+  height: 100px;
+}
+
+.bbsType {
+  width: 745px;
+  border-collapse: collapse;
+  border-top: 2px solid #989898;
+  border-bottom: 2px solid #989898;
+}
+
+.bbsType tfoot .indexBorder {
+  border-top: 1px solid #bcbcbc;
+  background: #fafafa;
+  padding: 15px 0;
+  text-align: center;
+  margin-right: 87px;
+}
+
+/*
+
+bootstrap template - login-form Template
+Version: 1.0
+By: dave-cheon
+
+*/
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+* { font-family: 'Nanum Gothic', sans-serif; }
+
+.spaceLeft {
+  margin-left: 10px;
+}
+.spaceRight {
+  margin-right: 10px;
+}
+
+/* custom checkbox */
+.btn span.fa {
+  opacity: 0;
+}
+.btn.active span.fa {
+  opacity: 1;
+}
+
+hr{
+  border-width: 2px;
+}
+

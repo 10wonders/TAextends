@@ -2,7 +2,6 @@ var express = require('express');
 var path = require('path');
 var mysql = require('mysql');
 var dbconfig = require('../dbconn');
-var app = express();
 var router = express.Router();
 var fs = require('fs');
 
@@ -46,7 +45,7 @@ router.post('/',function(req, res){
         author : author,
         content : content,
         author_id : 1
-    }
+    };
 
     //writing board index information
     //not exist -> make

@@ -1,0 +1,58 @@
+.main_content_top{
+    padding: 0 50px;
+    height:500px;
+}
+
+.used_article{
+    padding-left : 400px;
+}
+
+.panel{
+    width:400px;
+    float: left;
+}
+
+.panel-heading{
+    text-align: center;
+    width:400px
+}
+
+
+.main_showitem .table > tr > td{
+    width: 100px;
+    height: 300px;
+}
+
+
+.shopping_mall .used_article{
+    float: left;
+}
+
+.item_list {
+    width: 800px;
+    line-height: 18px;
+}
+
+.item_list li {
+    display: inline;
+    overflow: hidden;
+    float: left;
+    height: 250px;
+    width : 230px;
+    margin: 13px 0 0 13px;
+    border: 2px solid #ededef;
+}
+
+.thumbnail{
+    position : relative;
+    margin-bottom: 0px;
+    width: 230px;
+    height: 170px;
+}
+
+ul {
+    list-style: none;
+    font-size: 20px;
+    padding-bottom: 15px;
+}
+

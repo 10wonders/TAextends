@@ -1,15 +1,15 @@
-<div class = "main_title">
-    <h1>
-        Main_Title
-    </h1>
-</div>
 <div class="board_view_area">
     <div class="board_view_form">
         <%
-        var title = board_data.title;
-        var content = board_data.content;
+        var b_title = board_data[0].title;
+        var b_content = board_data[0].content;
         %>
-        <%-title%>
-        <%-content%>
+        <div>
+            <H1><%=b_title%></H1>
+        </div>
+        <hr>
+        <div>
+        <%-b_content%>
+        </div>
     </div>
 </div>

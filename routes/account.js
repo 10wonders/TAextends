@@ -9,11 +9,10 @@ var connection;
 connection = mysql.createConnection(dbconfig);
 var router = express.Router();
 
-
 router.get('/',function(req,res){
     if(req.session.user_id)
-        res.redirect('/');
-    res.render('./accounts/login.html');
+        res.redirect("/");
+    res.render('./account/login.html');
 });
 
 router.get('/join',function(req,res){
@@ -23,7 +22,7 @@ router.get('/join',function(req,res){
         'Content-Type':'text/html',
         'charset':'utf-8'
     });
-    res.render('./accounts/join.html');
+    res.render('./account/join.html');
 });
 
 router.post('/join',function(req,res){
@@ -45,31 +44,27 @@ router.post('/join',function(req,res){
     res.status(200).send("200");
 });
 
-router.get('/login/', function(req,res){
-    res.redirect('/accounts');
-});
-
-router.post('/login',function(req,res){
+router.post('/',function(req,res){
     var sess = req.session;
+    if(sess.user_id)
+        res.redirect("/");
 
     var query = connection.query('SELECT user_pwd from user where user_id=' + mysql.escape(req.body.user_id), function (err, rows) {
         try {
             if (req.body.user_pwd === rows[0].user_pwd) {
                 sess.user_id = req.body.user_id;
                 sess.user_pwd = rows[0].user_pwd;
-                res.send('success');
+                res.redirect("/");
             }
             else {
-                res.send('incorrect');
+                res.send("error");
             }
-            connection.release();
         }
         catch (err){
             if(rows[0] == null){
                 console.log('undefined');
             }
-            connection.release();
-            res.redirect('/accounts');
+            res.redirect('/account');
         }
     });
 });
@@ -88,5 +83,15 @@ router.get('/logout',function(req,res){
         else
             res.redirect('/');
 });
+
+router.get('/mypage',function(req,res){
+    if(!req.session.user_id){
+        res.redirect("/account");
+    }
+    res.render('layout.html',{
+        user_id : req.session.user_id,
+        frame : './partial/mypage'
+    });
+})
 
 module.exports = router;

@@ -6,12 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-
+var mainhome = require('./routes/mainhome');
 var routes = require('./routes/index');
 var board_view = require('./routes/board_view');
+var account = require('./routes/account');
 var crawl = require('./routes/crawlerview');
-var accounts = require('./routes/accounts');
-
 var app = express();
 
 // view engine setup
@@ -34,10 +33,11 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', mainhome);
+app.use('/write',routes);
 app.use('/board_view', board_view);
 app.use('/crawler',crawl);
-app.use('/accounts',accounts);
+app.use('/account',account);
 
 app.use(function(req, res, next) {
   if(req.url.substr(-1) == '/' && req.url.length > 1)
