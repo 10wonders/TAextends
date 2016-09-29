@@ -1,10 +1,13 @@
+<script src="/javascripts/image.js" type="text/javascript" charset="utf-8"></script>
 <div>
     <div>
+
+        <img src="<%=item_info.img_url[1]%>" width="400px" height="400px" id="window">
 <%
         for(var i=1;i<item_info.img_url.length;i++)
         {
  %>
-        <a href="<%=item_info.img_url[i]%>"><img src="<%=item_info.img_url[i]%>" width="400px" height="400px"></a>
+        <a href="<%=item_info.img_url[i]%>"><img src="<%=item_info.img_url[i]%>" width="100px" height="100px" id="thumb<%=i%>" onmouseover="showwindow(this)"></a>
 <%
         }
         if(item_info.img_url.length==1){
