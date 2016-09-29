@@ -1,0 +1,24 @@
+<div>
+    <div>
+<%
+        for(var i=1;i<item_info.img_url.length;i++)
+        {
+ %>
+        <a href="<%=item_info.img_url[i]%>"><img src="<%=item_info.img_url[i]%>" width="400px" height="400px"></a>
+<%
+        }
+        if(item_info.img_url.length==1){
+ %>
+        <img src="<%=item_info.img_url[1]%>" width="400px" height="400px">
+<%
+        }
+%>
+    </div>
+    <div>
+        <span>제목 : <%=item_info.title%></span></br>
+        <span>가격 : <%=item_info.price%></span></br>
+        <span>설명</span></br>
+        <hr>
+        <span><%=item_info.des%></span>
+    </div>
+</div>

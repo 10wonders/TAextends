@@ -43,6 +43,13 @@
                                 <a href="">2</a>
                                 <a href="" class="next"><span class="offscreen">다음글보기</span></a>
                             </div>
+                            <div align="right">
+                                <a href="/board/write">
+                                    <button class="btn btn-default">
+                                        글쓰기
+                                    </button>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     </tfoot>
@@ -50,7 +57,7 @@
                     <% for (var i=0; i<board_data.length; i++)
                     {
                         var item = board_data[i];
-                        var link = "/board_view/"+item.id;
+                        var link = "/board/"+item.id;
                     %>
                     <tr>
                         <td class="title"><a href = "<%-link%>"><%=item.title%></a></td>

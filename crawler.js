@@ -37,41 +37,77 @@ var iconv =require("iconv-lite");
 
 var hm_category=["HAC", "HAK", "HAA","HAB", "HAE","HAD","HAI","HAH","HAO", "HAJ", "HAF","HAG", "HAL", "HAP", "HAQ","HAM","HAN","HAS","HAT","HEA","HCA","HDA","HAU","HZZ"];
 
-module.exports.hellomarket = function hellomarket_crawler() {
-    var category_num = hm_category[0]+"0000";
+module.exports.hellomarket_item = function hellomarket_item_crawler(item_num,callback){
+    var url = "https://www.hellomarket.com/item/"+item_num;
+    request(url,function(error, response, body){
+        if(error) throw error;
+        var $ = cheerio.load(body);
+        var imgurlregax=/(\/\/)(img\.)[a-zA-Z0-9-_\.]+([-a-zA-Z0-9:%_\+.~#?&//=]*)?(.(jpg|png|jpeg|gif|bmp))([-a-zA-Z0-9:;%_\+.~#?&//=]*)?/g;
+  //      var imgurl = body.match(imgurlregax);
+
+        var uList = $('.thumbnail-wrapper').children('.badeagle').children('.centered');
+        var IList = $('.item_info');
+        var CList = $('.description');
+        var imgurl = [];
+        for(var i=0;i<uList.length;i++) {
+            imgurl[i] = $(uList[i]).find('.thumbnailImg').attr('src');
+        }
+
+        var item_title = $(IList).find('.item_title').text();
+        var item_price = $(IList).find('.item_price').text();
+        var description = $(CList).find('.description_text').text();
+
+        var result = {
+            img_url : imgurl,
+            title : item_title,
+            price : item_price,
+            des : description
+        };
+        callback(result);
+    });
+};
+
+module.exports.hellomarket = function hellomarket_crawler(category_num, callback) {
+    var category = hm_category[category_num]+"0000";
     var pagenum = 1;
-    var url = "https://www.hellomarket.com/search?category=" + category_num + "&page=" + pagenum;
+    var url = "https://www.hellomarket.com/search?category=" + category + "&page=" + pagenum;
 
 
-    var item_title = new Array();
-    var price = new Array();
+    var item_title = [];
+    var price = [];
     request(url, function (error, response, body) {
         if (error) throw error;
         var $ = cheerio.load(body);
         var imgurlregax = /(\/\/)(img\.)[a-zA-Z0-9-_\.]+([-a-zA-Z0-9:%_\+.~#?&//=]*)?(.(jpg|png|jpeg|gif|bmp))([-a-zA-Z0-9:;%_\+.~#?&//=]*)?/g;
         var imgurl = body.match(imgurlregax);
-        var targeturlregax = /(\/item\/)[0-9]+/g
+        var targeturlregax = /(\/item\/)[0-9]+/g;
         var targeturl = body.match(targeturlregax, imgurlregax);
 
         var IList = $('#thumbnail').children('ul').children('li');
 
         for (var i = 0; i < IList.length; i++) {
-
             item_title[i] = $(IList[i]).find('.item_title').text();
             price[i] = $(IList[i]).find('.item_price').text();
-            console.log(imgurl[i]);
-            console.log(targeturl[i]);
-            console.log("아이템 이름 :" + item_title[i] + "가격 : " + price[i]);
+//            console.log(imgurl[i]);
+//            console.log(targeturl[i]);
+//            console.log("아이템 이름 :" + item_title[i] + "가격 : " + price[i]);
         }
+        var result = {
+            img_url : imgurl,
+            url : targeturl,
+            title : item_title,
+            price : price
+        };
+        callback(result);
     });
-}
+};
 
 module.exports.joongonara = function joongonara_crawler(){
     var menu_id = "339";
     var display_num = "50";
     var url = "http://cafe.naver.com/ArticleList.nhn?search.clubid=10050146&search.menuid=" + menu_id + "&search.boardtype=L&userDisplay=" + display_num;
-    var item_title = new Array();
-    var board_id = new Array();
+    var item_title = [];
+    var board_id = [];
     request.get({
         url:url,
         encoding:null

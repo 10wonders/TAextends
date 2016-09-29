@@ -1,0 +1,21 @@
+<div>
+    <div>
+        <h1>헬로마켓</h1>
+    </div>
+    <hr class="one">
+    <div>
+
+<%
+            for(var i=0;i<category.length;i++)
+            {
+                var category_url = "/usedmall/hellomarket/"+i;
+ %>
+        <ul class="category_wrap" width>
+            <a href="<%=category_url%>"><span><%=category[i]%></span></a>
+        </ul>
+<%
+            }
+%>
+    </div>
+</div>
+

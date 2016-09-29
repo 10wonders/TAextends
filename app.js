@@ -7,10 +7,12 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 var mainhome = require('./routes/mainhome');
-var routes = require('./routes/index');
-var board_view = require('./routes/board_view');
+var board = require('./routes/board');
 var account = require('./routes/account');
 var crawl = require('./routes/crawlerview');
+var admin_view = require('./routes/admin');
+var item_list = require('./routes/item_list');
+var usedmall = require('./routes/usedmall');
 var app = express();
 
 // view engine setup
@@ -34,10 +36,12 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', mainhome);
-app.use('/write',routes);
-app.use('/board_view', board_view);
+app.use('/board', board);
 app.use('/crawler',crawl);
 app.use('/account',account);
+app.use('/admin',admin_view);
+app.use('/item_list',item_list);
+app.use('/usedmall',usedmall);
 
 app.use(function(req, res, next) {
   if(req.url.substr(-1) == '/' && req.url.length > 1)
