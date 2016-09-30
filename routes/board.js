@@ -16,7 +16,7 @@ var download = function(uri, filename, k, callback){
         console.log('content-length',res.headers['content-length']);
         request(uri).pipe(fs.createWriteStream("public/USER/"+k+"/images/"+filename)).on('close', callback);
     });
-}
+};
 
 router.get('/write', function(req, res) {
     var sess = req.session;
@@ -39,19 +39,11 @@ router.post('/write',function(req, res){
     var url = content.match(urlregax);
     console.log(url);
 
-    //k == board index
-    var board = {
-        title : title,
-        author : author,
-        content : content,
-        author_id : 1
-    };
-
     //check for url pregmatch
     //if exist download from remote url
     connection.query('SELECT id from board where id=(SELECT MAX(id) from board)',function(err,result){
         console.log(result[0].id);
-        var board_index = result[0].id;
+        var board_index = result[0].id+1;
 
         //make directories
         fs.mkdirSync('./public/USER/'+board_index, 0666);
@@ -64,40 +56,57 @@ router.post('/write',function(req, res){
                 download(url[i], i + ".png", board_index,function () {
                 });
                 content = content.replace(url[i], '/USER/' + board_index + '/images/' + i + '.png');
-            }
-        }
-    });
-    connection.query('INSERT into board set ?',board,function(err,result){
-        if(err){
-            console.log(err);
-            throw err;
-        }
-    });
 
-    //redirect to home
-    res.redirect('/');
+            }
+            console.log(content);
+        }
+
+        var board = {
+            title : title,
+            author : author,
+            content : content,
+            author_id : 1
+        };
+
+        connection.query('INSERT into board set ?',board,function(err,result){
+            if(err){
+                console.log(err);
+                throw err;
+            }
+        });
+
+        res.redirect('/board');
+    });
 });
 
 /* GET users listing. */
 router.get('/',function(req,res){
     connection.query("SELECT * from board", function(err, rows){
         console.log("query");
-        if(rows[0]==null){
-            console.log("no board data");
-            var board_list = {};
-        }
-        else {
-            console.log("data inputing");
-            board_list = rows;
-            console.log(board_list);
-        }
-        res.render('layout.html',{
-            board_data : board_list,
-            user_id : req.session.user_id,
-            frame : './partial/board_list'
+        var board = rows;
+  /*          for(var i=0;i<board.length;i++){
+                board[i].wtime = rows[i].
+            }
+    */        var time = rows;
+            if(board[0]==null){
+                console.log("no board data");
+                var board_list = {};
+            }
+            else {
+                console.log("data inputing");
+                board_list = board;
+            //    console.log(board_list);
+            }
+            res.render('layout.html',{
+                board_data : board_list,
+                wtime : time,
+                user_id : req.session.user_id,
+                frame : './partial/board_list'
+            });
         });
+
     });
-});
+
 
 
 router.get('/:k/', function(req, res, next) {
@@ -113,6 +122,14 @@ router.get('/:k/', function(req, res, next) {
                 board_data:rows
             });
     });
+});
+
+router.get('/:k/del',function(req,res){
+   var k = req.params.k;
+    connection.query("DELETE from board where id="+k,function(err,rows){
+        console.log(rows);
+        res.redirect('/board');
+    })
 });
 
 module.exports = router;
