@@ -1,13 +1,51 @@
 <script src="/javascripts/image.js" type="text/javascript" charset="utf-8"></script>
-<div>
-    <div>
+<style = "text/css">
+    .item_img_wrap {
+        float :left;
+        display : inline;
+        border : 2px solid #ededef;
 
-        <img src="<%=item_info.img_url[1]%>" width="400px" height="400px" id="window">
-<%
+    }
+
+    .item_main_img {
+        border-radius: 10px;
+        margin : 2px;
+        float :left;
+    }
+
+    .item_thumbnail_tab{
+
+        margin-left : 10px;
+        float : left;
+        width : 210px;
+    }
+    .item_thumbnail {
+        float : left;
+        margin : 2px;
+    }
+
+    .panel {
+        float : right;
+        width : 550px;
+    }
+
+    .panel-body{
+        height : 340px;
+    }
+</style>
+
+
+<div class="item_view_wrap">
+    <div class="item_img_wrap">
+
+        <img src="<%=item_info.img_url[1]%>" class="item_main_img" width="400px" height="400px" id="window">
+        <div class="item_thumbnail_tab">
+        <%
         for(var i=1;i<item_info.img_url.length;i++)
         {
  %>
-        <a href="<%=item_info.img_url[i]%>"><img src="<%=item_info.img_url[i]%>" width="100px" height="100px" id="thumb<%=i%>" onmouseover="showwindow(this)"></a>
+        <a href="<%=item_info.img_url[i]%>" class="item_thumbnail "><img src="<%=item_info.img_url[i]%>" width="100px" height="100px" id="thumb<%=i%>"
+         style="border-radius :10px;" onmouseover="showwindow(this)"></a>
 <%
         }
         if(item_info.img_url.length==1){
@@ -16,12 +54,15 @@
 <%
         }
 %>
+        </div>
     </div>
-    <div>
-        <span>제목 : <%=item_info.title%></span></br>
-        <span>가격 : <%=item_info.price%></span></br>
+    <div class="panel panel-default">
+        <div class="panel-heading"><span style="font-size: 16px">제목 :<strong><%=item_info.title%></strong></span></br>
+        <span >가격 : <strong style="font-size: 16px; color: red;"><%=item_info.price%></strong></span></br>
+        </div>
+        <div class="panel-body">
         <span>설명</span></br>
-        <hr>
-        <span><%=item_info.des%></span>
+         <%=item_info.des%>
+        </div>
     </div>
 </div>

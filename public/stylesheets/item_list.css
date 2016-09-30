@@ -1,7 +1,29 @@
 .item_wrap{
-    width :230px;
+    display: block;
+    width :215px;
     height : 305px;
     padding-right:20px;
     float:left;
-    margin-top: 20px;
+    margin: 10px;
+    border: 2px solid #ededef;
+    border-radius: 10px;
+}
+
+
+.item_thumbnail{
+    border-radius: 10px;
+}
+
+.item_title{
+    display: block;
+    color: grey;
+    font-size: 16px;
+}
+
+.itme_price{
+    display: block;
+    float: none;
+    align-self: baseline;
+    font-size : 12px;
+    color: #ae0000;
 }
