@@ -148,9 +148,9 @@ function RollImage(json){
 
         //alert(c.imageList[c.nextImg].style.left);
     };
-
+a
     //onmouseover 시 움직임 멈춤
-    function rollPause(c){
+    function rollPuse(c){
         //alert(c.listArea.onmouseover);
         c.listArea.onmouseover = function(){
             clearTimeout(c.rollTimer);

@@ -3,16 +3,14 @@
         <h1>헬로마켓</h1>
     </div>
     <hr class="one">
-    <div>
+    <div class="list-group">
 
 <%
             for(var i=0;i<category.length;i++)
             {
                 var category_url = "/usedmall/hellomarket/"+i;
  %>
-        <ul class="category_wrap" width>
-            <a href="<%=category_url%>"><span><%=category[i]%></span></a>
-        </ul>
+            <a href="<%=category_url%>" class="list-group-item col-md-3"><span><%=category[i]%></span></a>
 <%
             }
 %>
