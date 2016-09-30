@@ -7,5 +7,6 @@ module.exports = {
     port : 3305,
     user : 'clown',
     password : '1010',
-    database : 'ta_extends'
-}
+    database : 'ta_extends',
+    dateStrings: true
+};

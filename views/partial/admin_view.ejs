@@ -1,7 +1,7 @@
      <!--Slider-->
      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
      <script src="/javascripts/jquery.sliderPro.min.js" type="text/javascript" charset="utf-8"></script>
-        <link rel="stylesheet" type="text/css" href="/stylesheets/slider-pro.min.css" media="screen"/>
+    <link href="/stylesheets/slider-pro.min.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript">
         $( document ).ready(function( $ ) {
@@ -40,6 +40,7 @@
     <div class="admin_view_wrap">
         <div class="admin_view_title">
             <h1>Admin View</h1>
+            <a href="/admin/<%=board_data[0].id%>/del"><button>삭제</button></a>
         </div>
         <div class="admin_view_body">
             <table class="view_item">
@@ -49,91 +50,41 @@
                     <button class="delete_button" style="position:absolute; margin: 10px; z-index:10;" > 지우기
                                         </button>
                                 <div class="sp-slides">
+                                    <%
+                                        for(var i=0;i<img_arr.length;i++)
+                                        {
+ %>
                                     <div class="sp-slide">
                                         <img class="sp-image"
-                                             data-src="http://bqworks.com/slider-pro/images/image1_medium.jpg"/>
+                                             data-src="/USER/<%=board_data[0].id%>/images/<%=img_arr[i]%>"/>
 
                                     </div>
-
-                                    <div class="sp-slide">
-                                        <img class="sp-image"
-                                             data-src="http://bqworks.com/slider-pro/images/image2_medium.jpg"/>
-
-                                    </div>
-
-                                    <div class="sp-slide">
-                                        <img class="sp-image"
-                                             data-src="http://bqworks.com/slider-pro/images/image3_medium.jpg"
-                                            />
-
-                                    </div>
-
-                                    <div class="sp-slide">
-                                        <img class="sp-image"
-                                             data-src="http://bqworks.com/slider-pro/images/image4_medium.jpg"
-                                           />
-
-                                    </div>
-
-                                    <div class="sp-slide">
-                                        <img class="sp-image"
-                                             data-src="http://bqworks.com/slider-pro/images/image5_medium.jpg"
-                                            />
-
-                                    </div>
-
-                                    <div class="sp-slide">
-                                        <img class="sp-image"
-                                             data-src="http://bqworks.com/slider-pro/images/image6_medium.jpg"/>
-
-                                    </div>
-
-                                    <div class="sp-slide">
-                                        <img class="sp-image"
-                                             data-src="http://bqworks.com/slider-pro/images/image7_medium.jpg"
-                                             />
-
-                                    </div>
-
-                                    <div class="sp-slide">
-                                        <img class="sp-image"
-                                             data-src="http://bqworks.com/slider-pro/images/image8_medium.jpg"
-                                           />
-                                    </div>
-
-                                    <div class="sp-slide">
-                                        <img class="sp-image"
-                                             data-src="http://bqworks.com/slider-pro/images/image9_medium.jpg"/>
-                                    </div>
-
-                                    <div class="sp-slide">
-                                        <img class="sp-image"
-                                             data-src="http://bqworks.com/slider-pro/images/image10_medium.jpg"
-                                             />
-                                    </div>
+                                    <%}%>
                                 </div>
 
                                 <div class="sp-thumbnails">
-                                    <img class="sp-thumbnail" src="http://bqworks.com/slider-pro/images/image1_thumbnail.jpg"/>
-                                    <img class="sp-thumbnail" src="http://bqworks.com/slider-pro/images/image2_thumbnail.jpg"/>
-                                    <img class="sp-thumbnail" src="http://bqworks.com/slider-pro/images/image3_thumbnail.jpg"/>
-                                    <img class="sp-thumbnail" src="http://bqworks.com/slider-pro/images/image4_thumbnail.jpg"/>
-                                    <img class="sp-thumbnail" src="http://bqworks.com/slider-pro/images/image5_thumbnail.jpg"/>
-                                    <img class="sp-thumbnail" src="http://bqworks.com/slider-pro/images/image6_thumbnail.jpg"/>
-                                    <img class="sp-thumbnail" src="http://bqworks.com/slider-pro/images/image7_thumbnail.jpg"/>
-                                    <img class="sp-thumbnail" src="http://bqworks.com/slider-pro/images/image8_thumbnail.jpg"/>
-                                    <img class="sp-thumbnail" src="http://bqworks.com/slider-pro/images/image9_thumbnail.jpg"/>
-                                    <img class="sp-thumbnail" src="http://bqworks.com/slider-pro/images/image10_thumbnail.jpg"/>
+                                    <%
+                                    for(var i=0;i<img_arr.length;i++)
+                                    {
+                                    %>
+                                    <img class="sp-thumbnail" src="/USER/<%=board_data[0].id%>/images/<%=img_arr[i]%>"/>
+                                    <%}%>
                                 </div>
                     </div>
 
                 </div>
                 <div class="view_context">
+<%
+                    var board = board_data[0];
+ %>
                     <div class="context_title" id="contextTitle" style="border: 2px solid #ededef ; border-radius:10px">
-                        <h3 ><string>제목 </strong></h3>
+                        <h3><strong><%=board.title%> </strong></h3>
+
                     </div>
                     <div class="context_body" id="contextBody">
-                        <textarea class="form-control" rows="15" type="text" readonly placeholder="내용"></textarea>
+                        <div class="form-control" rows="15" type="text" readonly placeholder="내용">
+                            <%-board.content%>
+                        </div>
                     </div>
                 </div>
             </table>
