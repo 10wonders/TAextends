@@ -6,6 +6,7 @@ var request = require("request");
 var express = require("express");
 var cheerio = require("cheerio");
 var iconv =require("iconv-lite");
+var urlencode = require("urlencode");
 
 /*
  * Hellomarket Category
@@ -36,6 +37,10 @@ var iconv =require("iconv-lite");
  */
 
 var hm_category=["HAC", "HAK", "HAA","HAB", "HAE","HAD","HAI","HAH","HAO", "HAJ", "HAF","HAG", "HAL", "HAP", "HAQ","HAM","HAN","HAS","HAT","HEA","HCA","HDA","HAU","HZZ"];
+
+module.exports.hellomarket_search = function hellomarket_search(query, callback){
+
+};
 
 module.exports.hellomarket_item = function hellomarket_item_crawler(item_num,callback){
     var url = "https://www.hellomarket.com/item/"+item_num;
@@ -102,6 +107,45 @@ module.exports.hellomarket = function hellomarket_crawler(category_num, callback
     });
 };
 
+
+module.exports.hellomarket_item_search = function hellomarket_item_search(category_num, query, callback) {
+    var category = hm_category[category_num]+"0000";
+    var pagenum = 1;
+    query = urlencode(query);
+    var url = "https://www.hellomarket.com/search?q="+query+ "&page=" + pagenum;
+    if(category_num!=-1)
+        url += "&category="+hm_category[category_num]+"0000";
+
+    console.log(url);
+    var item_title = [];
+    var price = [];
+    request(url, function (error, response, body) {
+        if (error) throw error;
+        var $ = cheerio.load(body);
+        var imgurlregax = /(\/\/)(img\.)[a-zA-Z0-9-_\.]+([-a-zA-Z0-9:%_\+.~#?&//=]*)?(.(jpg|png|jpeg|gif|bmp))([-a-zA-Z0-9:;%_\+.~#?&//=]*)?/g;
+        var imgurl = body.match(imgurlregax);
+        var targeturlregax = /(\/item\/)[0-9]+/g;
+        var targeturl = body.match(targeturlregax, imgurlregax);
+
+        var IList = $('#thumbnail').children('ul').children('li');
+
+        for (var i = 0; i < IList.length; i++) {
+            item_title[i] = $(IList[i]).find('.item_title').text();
+            price[i] = $(IList[i]).find('.item_price').text();
+//            console.log(imgurl[i]);
+//            console.log(targeturl[i]);
+//            console.log("아이템 이름 :" + item_title[i] + "가격 : " + price[i]);
+        }
+        var result = {
+            img_url : imgurl,
+            url : targeturl,
+            title : item_title,
+            price : price
+        };
+        callback(result);
+    });
+};
+
 module.exports.joongonara = function joongonara_crawler(){
     var menu_id = "339";
     var display_num = "50";
@@ -130,4 +174,4 @@ module.exports.joongonara = function joongonara_crawler(){
                 console.log("아이템 이름 :" + item_title[i] + "게시판 번호 : " + board_id[i]);
             }
     });
-}
+};

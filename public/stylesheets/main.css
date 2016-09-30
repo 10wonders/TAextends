@@ -17,7 +17,8 @@
 .top_search_content{
 	float:left;
 }
-.search_submit{
+#search_submit{
+	vertical-align : middle;
 	float:left;
 }
 button{

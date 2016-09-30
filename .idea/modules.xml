@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/TAextends.iml" filepath="$PROJECT_DIR$/.idea/TAextends.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TAextends_nodejs.iml" filepath="$PROJECT_DIR$/.idea/TAextends_nodejs.iml" />
     </modules>
   </component>
 </project>
