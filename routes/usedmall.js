@@ -39,8 +39,10 @@ router.get('/hellomarket',function(req,res){
 });
 
 router.get('/hellomarket/:k',function(req,res){
+    console.log("1");
     c_num = req.params.k;
     cc.hellomarket(c_num,function(result){
+        console.log(result);
         res.render('layout.html',{
             category_name : hm_category[c_num],
             items : result,
@@ -61,7 +63,5 @@ router.get('/hellomarket/item/:k',function(req,res){
         })
     })
 });
-
-
 
 module.exports = router;

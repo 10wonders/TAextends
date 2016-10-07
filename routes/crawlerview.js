@@ -9,7 +9,7 @@ var fs = require("fs");
 var router = express.Router();
 
 router.get('/',function(req, res, next){
-    cc.hellomarket();
+    cc.joongonara_boarditem(339606683);
     res.redirect("/");
 });
 
