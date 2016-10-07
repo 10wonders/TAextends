@@ -75,6 +75,11 @@ By: dave-cheon
   margin-right: 10px;
 }
 
+.login-container .col-md-3{
+  float: none;
+  margin: 0 auto;
+}
+
 /* custom checkbox */
 .btn span.fa {
   opacity: 0;
@@ -84,6 +89,8 @@ By: dave-cheon
 }
 
 hr{
-  border-width: 2px;
+    border-width: 2px;
 }
+
+
 

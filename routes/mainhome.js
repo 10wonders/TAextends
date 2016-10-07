@@ -8,7 +8,8 @@ router.get('/',function(req,res){
     var sess = req.session.user_id;
     res.render('layout.html',{
         user_id : sess,
-        frame :'./partial/main'
+        frame :'./partial/main',
+        search_frame : './partial/search_popup'
     });
 });
 

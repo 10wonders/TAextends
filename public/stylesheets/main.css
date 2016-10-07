@@ -1,8 +1,8 @@
 @charshet "utf-8";
 
 .top .top_middle_search{
-	display:block;
-	margin-top:30px;
+	float: right;
+	display:inline-block;
 }
 .triple_a_top_logo{
 	float:left;
@@ -11,14 +11,28 @@
 
 .top_middle_search{
 	vertical-align: middle;
-	float:left;
-	width:600px;
+	float:right;
+	width:440px;
 }
+
+#top_search_form{
+	clear: both;
+	margin-top: 20px;
+	float:right;
+	width:440px;
+}
+
 .top_search_content{
+	display: inline;
 	float:left;
 }
+
+.top_search_content .top_search_insert{
+	width: 395px;
+}
+
 .search_submit{
-	float:left;
+	float:right;
 }
 button{
 	display:block;
@@ -28,10 +42,14 @@ form{
 	display:block;
 }
 fieldset{
-	width:40%;
+
 }
 
 .top_left_menu{
+	float:right;
+}
+
+.top_left_menu .user_menu{
 	float:right;
 }
 
@@ -47,6 +65,7 @@ fieldset{
 }
 
 .main_content{
+	clear: both;
     margin-left:20px;
 }
 
@@ -71,6 +90,8 @@ fieldset{
 .content_box{
     margin-bottom:10px;
 }
+
+
 
 
 

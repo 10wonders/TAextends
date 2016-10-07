@@ -131,3 +131,42 @@ module.exports.joongonara = function joongonara_crawler(){
             }
     });
 }
+
+module.exports.bunjang = function bunjang_crawler(category_num, callback) {
+    var category = "310";
+    var pagenum = 0;
+    var url = "http://m.bunjang.co.kr/categories/" + category + "?page=" + pagenum;
+
+    var img_url = [];
+    var item_title = [];
+    var price = [];
+
+    request(url, function (error, response, body) {
+        console.log('resuest');
+        if (error) throw error;
+        var $ = cheerio.load(body);
+        console.log($('.goodslist').children('li').children('.thumb'));
+        // var imgurlregax = /(\/\/)(img\.)[a-zA-Z0-9-_\.]+([-a-zA-Z0-9:%_\+.~#?&//=]*)?(.(jpg|png|jpeg|gif|bmp))([-a-zA-Z0-9:;%_\+.~#?&//=]*)?/g;
+        // var imgurl = body.match(imgurlregax);
+        // var targeturlregax = /(\/item\/)[0-9]+/g;
+        // var targeturl = body.match(targeturlregax, imgurlregax);
+
+        var IList = $('.goodslist').chilodren('li').children('.thumb');
+        console.log(IList.length);
+        for (var i = 0; i < IList.length; i++) {
+            img_url[i] =$(IList[i]).find('.thumb.loaded').attr('data-src');
+            item_title[i] = $(IList[i]).find('.txtinfo>em').text();
+            price[i] = $(IList[i]).find('.textinfo>strong').text();
+            console.log(imgurl[i]);
+           console.log(targeturl[i]);
+           console.log("아이템 이름 :" + item_title[i] + "가격 : " + price[i]);
+        }
+        var result = {
+            img_url : img_url,
+            //url : targeturl,
+            title : item_title,
+            price : price
+        };
+        callback(result);
+    });
+};

@@ -19,7 +19,8 @@ router.get('/hellomarket',function(req,res){
     res.render('layout.html',{
         category : hm_category,
         user_id:req.session.user_id,
-        frame:'./partial/hellomarket'
+        frame:'./partial/hellomarket',
+        search_frame : './partial/search_popup'
     });
 });
 
@@ -30,7 +31,8 @@ router.get('/hellomarket/:k',function(req,res){
             category_name : hm_category[c_num],
             items : result,
             user_id : req.session.user_id,
-            frame : './partial/item_list'
+            frame : './partial/item_list',
+            search_frame : './partial/search_popup'
         });
     });
 });
@@ -42,7 +44,8 @@ router.get('/hellomarket/item/:k',function(req,res){
         res.render('layout.html',{
             item_info : result,
             user_id: req.session.user_id,
-            frame:'./partial/item_view'
+            frame:'./partial/item_view',
+            search_frame : './partial/search_popup'
         })
     })
 });
