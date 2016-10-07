@@ -41,9 +41,9 @@ router.post('/write',function(req, res){
 
     //check for url pregmatch
     //if exist download from remote url
-    connection.query('SELECT id from board where id=(SELECT MAX(id) from board)',function(err,result){
-        console.log(result[0].id);
-        var board_index = result[0].id+1;
+    connection.query('SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = "ta_extends" AND TABLE_NAME = "board"',function(err,result){
+        console.log(result[0].AUTO_INCREMENT);
+        var board_index = result[0].AUTO_INCREMENT;
 
         //make directories
         fs.mkdirSync('./public/USER/'+board_index, 0666);
