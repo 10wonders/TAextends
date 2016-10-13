@@ -37,6 +37,8 @@ var urlencode = require("urlencode");
  */
 
 var hm_category=["HAC", "HAK", "HAA","HAB", "HAE","HAD","HAI","HAH","HAO", "HAJ", "HAF","HAG", "HAL", "HAP", "HAQ","HAM","HAN","HAS","HAT","HEA","HCA","HDA","HAU","HZZ"];
+var bj_category=["310", "320", "400","410", "500","700","600","900","800", "750", "999"];
+
 
 module.exports.hellomarket_search = function hellomarket_search(query, callback){
 
@@ -49,7 +51,7 @@ module.exports.hellomarket_item = function hellomarket_item_crawler(item_num,cal
         if(error) throw error;
         var $ = cheerio.load(body);
         var imgurlregax=/(\/\/)(img\.)[a-zA-Z0-9-_\.]+([-a-zA-Z0-9:%_\+.~#?&//=]*)?(.(jpg|png|jpeg|gif|bmp))([-a-zA-Z0-9:;%_\+.~#?&//=]*)?/g;
-  //      var imgurl = body.match(imgurlregax);
+        var imgurl = body.match(imgurlregax);
 
         var uList = $('.thumbnail-wrapper').children('.badeagle').children('.centered');
         var IList = $('.item_info');
@@ -89,14 +91,19 @@ module.exports.hellomarket = function hellomarket_crawler(category_num, callback
         var imgurlregax = /(\/\/)(img\.)[a-zA-Z0-9-_\.]+([-a-zA-Z0-9:%_\+.~#?&//=]*)?(.(jpg|png|jpeg|gif|bmp))([-a-zA-Z0-9:;%_\+.~#?&//=]*)?/g;
         var imgurl = body.match(imgurlregax);
 
+        //var uList = $('#thumbnail').children('.search-wrapper').children('.centered');
+
         var targeturlregax = /(\/item\/)[0-9]+/g;
         var targeturl = body.match(targeturlregax, imgurlregax);
 
+
         var IList = $('#thumbnail').children('ul').children('li');
 
+        var imgurl = [];
         for (var i = 0; i < IList.length; i++) {
             item_title[i] = $(IList[i]).find('.item_title').text();
             price[i] = $(IList[i]).find('.item_price').text();
+            imgurl[i] = $(IList[i]).find('.thumbnailImg').attr("src");
 //            console.log(imgurl[i]);
 //            console.log(targeturl[i]);
 //            console.log("아이템 이름 :" + item_title[i] + "가격 : " + price[i]);
@@ -132,7 +139,6 @@ module.exports.hellomarket_item_search = function hellomarket_item_search(catego
         var targeturl = body.match(targeturlregax, imgurlregax);
 
         var IList = $('#thumbnail').children('ul').children('li');
-
         for (var i = 0; i < IList.length; i++) {
             item_title[i] = $(IList[i]).find('.item_title').text();
             price[i] = $(IList[i]).find('.item_price').text();
@@ -283,39 +289,77 @@ module.exports.joongonara_category = function joongonara_category(){
 }
 
 module.exports.bunjang = function bunjang_crawler(category_num, callback) {
-    var category = "310";
+    var category = bj_category[category_num];
     var pagenum = 0;
-    var url = "http://m.bunjang.co.kr/categories/" + category + "?page=" + pagenum;
-
+    var url = "https://m.bunjang.co.kr/categories/" + category + "?order=date&page=" + pagenum;
     var img_url = [];
     var item_title = [];
-    var price = [];
+    var price = []
+    var targeturl = [];
 
-    request(url, function (error, response, body) {
-        console.log('resuest');
-        if (error) throw error;
+    var phantom = require('node-phantom-simple');
+
+    phantom.create({ path : require('phantomjs').path },function(err,ph){
+        console.log("create");
+        return ph.createPage(function(err,page){
+            console.log("createPage");
+            return page.open(url, function(err,status){
+                console.log("opend sites", status);
+                    return page.evaluate(function(){
+                        return document.getElementsByClassName("goodslist")[0].innerHTML;
+                    }, function(err, result){
+                        var $ = cheerio.load(result);
+                        var IList = $('li');
+                        for (var i = 0; i < IList.length; i++) {
+                            img_url[i] =$(IList[i]).find('.thumb>img').attr('data-src');
+                            item_title[i] = $(IList[i]).find('.txtinfo>em').text();
+                            price[i] = $(IList[i]).find('.textinfo>strong').text();
+                            targeturl[i] = $(IList[i]).find('a').attr('href');
+                            console.log("아이템 이름 :" + item_title[i] + "가격 : " + price[i]);
+                        }
+                        var result = {
+                            img_url : img_url,
+                            url : targeturl,
+                            title : item_title,
+                            price : price
+                        };
+
+                        ph.exit();
+                        callback(result);
+                    });
+            })
+        })
+    });
+
+};
+
+//번개장터 아이템 크롤러
+module.exports.bunjang_item = function bunjang_item_crawler(item_num,callback){
+    var url = "http://m.bunjang.co.kr/products/"+item_num;
+    request(url,function(error, response, body){
+        if(error) throw error;
+        console.log(body);
         var $ = cheerio.load(body);
-        console.log($('.goodslist').children('li').children('.thumb'));
-        // var imgurlregax = /(\/\/)(img\.)[a-zA-Z0-9-_\.]+([-a-zA-Z0-9:%_\+.~#?&//=]*)?(.(jpg|png|jpeg|gif|bmp))([-a-zA-Z0-9:;%_\+.~#?&//=]*)?/g;
+        // var imgurlregax=/(\/\/)(img\.)[a-zA-Z0-9-_\.]+([-a-zA-Z0-9:%_\+.~#?&//=]*)?(.(jpg|png|jpeg|gif|bmp))([-a-zA-Z0-9:;%_\+.~#?&//=]*)?/g;
         // var imgurl = body.match(imgurlregax);
-        // var targeturlregax = /(\/item\/)[0-9]+/g;
-        // var targeturl = body.match(targeturlregax, imgurlregax);
 
-        var IList = $('.goodslist').chilodren('li').children('.thumb');
-        console.log(IList.length);
-        for (var i = 0; i < IList.length; i++) {
-            img_url[i] =$(IList[i]).find('.thumb.loaded').attr('data-src');
-            item_title[i] = $(IList[i]).find('.txtinfo>em').text();
-            price[i] = $(IList[i]).find('.textinfo>strong').text();
-            console.log(imgurl[i]);
-           console.log(targeturl[i]);
-           console.log("아이템 이름 :" + item_title[i] + "가격 : " + price[i]);
+        var uList = $('#slidearea').children('ul').children('li');
+        var IList = $('.goodsinfo');
+        //var CList = $('.description');
+        var imgurl = [];
+        for(var i=0;i<uList.length;i++) {
+            imgurl[i] = $(uList[i]).find('.lazy').attr('data-src');
         }
+
+        var item_title = $(IList).find('.name').text();
+        var item_price = $(IList).find('.price').text();
+        var description = $(IList).find('.txtwrap .txtbox').text();
+
         var result = {
-            img_url : img_url,
-            //url : targeturl,
+            img_url : imgurl,
             title : item_title,
-            price : price
+            price : item_price,
+            des : description
         };
         callback(result);
     });

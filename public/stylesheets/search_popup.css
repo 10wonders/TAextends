@@ -13,11 +13,16 @@
     visibility: visible;
 }
 
+.usedmall .header_wrap, .shoppingmall .header_wrap {
+    clear:both;
+    width: 440px;
+    height: 28px;
+    border-bottom: 1px solid #ededef;
+}
+
 .usedmall .header, .shoppingmall .header{
     display: block;
-    float: none;
-    border-bottom: 1px solid #ededef;
-    clear:both;
+    float: left;
     font-size: 20px;
 }
 

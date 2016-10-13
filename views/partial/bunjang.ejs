@@ -1,0 +1,19 @@
+<div>
+    <div>
+        <h1>번개장터</h1>
+    </div>
+    <hr class="one">
+    <div class="list-group">
+
+        <%
+        for(var i=0;i<category.length;i++)
+        {
+        var category_url = "/usedmall/bunjang/"+i;
+        %>
+        <a href="<%=category_url%>" class="list-group-item col-md-3"><span><%=category[i]%></span></a>
+        <%
+        }
+        %>
+    </div>
+</div>
+

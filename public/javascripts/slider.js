@@ -1,14 +1,26 @@
-$( "#search_submit" ).hover(function() {
+$( "#search_submit" ).mouseover(function() {
+    console.log("over");
     $( "#search_popup_wrap" ).addClass("mouseover");
-},
+});
+
+$( "#search_submit" ).mouseout(
     function () {
+        if($("#search_popup_wrap").is(':hover') === false)
+        {
+            console.log($("#search_popup_wrap").mouseover.length);
+            console.log("leave");
+            $( "#search_popup_wrap" ).removeClass("mouseover");
+        }
     });
 
-$( "#search_popup_wrap" ).mouseleave(
-    function () {
-        console.log("leave");
-        $( "#search_popup_wrap" ).removeClass("mouseover");
-    });
+$( "#search_popup_wrap" ).hover(function() {
+        console.log("popup_over");
+    $( "#search_popup_wrap" ).addClass("mouseover");
+},function () {
+    console.log("popup_leave");
+    $( "#search_popup_wrap" ).removeClass("mouseover");
+});
+
 
 var usedlist_amt = 10;   // 움직임 값 (클수록 빠름)
 var usedlist_gap = 130;  // 이미지와 사이 공간의 합

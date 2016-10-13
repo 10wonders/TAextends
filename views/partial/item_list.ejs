@@ -1,6 +1,6 @@
 <link href="/stylesheets/item_list.css" rel="stylesheet" type="text/css">
 <div>
-    <h1>헬로마켓 품목</h1>
+    <h1><%=mall_name%> 품목</h1>
     <h3><%=category_name%></h3>
 </div>
 <hr>
@@ -11,9 +11,9 @@
         var item = items;
 %>
     <div class="item_wrap">
-        <a href="/usedmall/hellomarket<%-item.url[i]%>">
+        <a href="/usedmall/<%=mall_ename%><%-item.url[i]%>">
             <div class="img_wrap">
-                <img class="item_thumbnail" src="<%-item.img_url[i]%>">
+                <img class="item_thumbnail" src="<%=item.img_url[i]%>">
             </div>
             <span class="item_title"><%=item.title[i]%></span>
             <span class="item_price"><%=item.price[i]%></span>

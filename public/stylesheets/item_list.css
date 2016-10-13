@@ -11,6 +11,8 @@
 
 
 .item_thumbnail{
+    height : 210px;
+    width : 210px;
     border-radius: 10px;
 }
 
