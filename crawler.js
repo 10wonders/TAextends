@@ -313,7 +313,7 @@ module.exports.bunjang = function bunjang_crawler(category_num, callback) {
                         for (var i = 0; i < IList.length; i++) {
                             img_url[i] =$(IList[i]).find('.thumb>img').attr('data-src');
                             item_title[i] = $(IList[i]).find('.txtinfo>em').text();
-                            price[i] = $(IList[i]).find('.textinfo>strong').text();
+                            price[i] = $(IList[i]).find('.txtinfo>strong').text();
                             targeturl[i] = $(IList[i]).find('a').attr('href');
                             console.log("아이템 이름 :" + item_title[i] + "가격 : " + price[i]);
                         }
@@ -345,9 +345,13 @@ module.exports.bunjang_item = function bunjang_item_crawler(item_num,callback){
 
         var uList = $('#slidearea').children('ul').children('li');
         var IList = $('.goodsinfo');
+
         //var CList = $('.description');
         var imgurl = [];
-        for(var i=0;i<uList.length;i++) {
+
+        imgurl[0] = null;
+        imgurl[1] = $(uList).children('img').attr('src');
+        for(var i=2;i<uList.length;i++) {
             imgurl[i] = $(uList[i]).find('.lazy').attr('data-src');
         }
 
